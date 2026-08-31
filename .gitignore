@@ -1,0 +1,38 @@
+# Java / Spring Boot
+backend/build/
+backend/target/
+*.class
+*.log
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+.mvn/
+!mvnw
+!mvnw.cmd
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
