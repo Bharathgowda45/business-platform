@@ -13,6 +13,9 @@ on:
 
 jobs:
 
+  # =========================
+  # BACKEND - MAVEN
+  # =========================
   backend:
     name: Backend Build & Test
     runs-on: ubuntu-latest
@@ -25,22 +28,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
-          cache: gradle
-
-      - name: Make Gradle executable
-        run: chmod +x gradlew
+          cache: maven
 
       - name: Build and test backend
-        run: ./gradlew clean build
+        run: ./mvnw clean verify
 
 
+  # =========================
+  # FRONTEND - NODE
+  # =========================
   frontend:
-    name: Frontend Build & Test
+    name: Frontend Build
     runs-on: ubuntu-latest
 
     defaults:
@@ -52,9 +55,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '24'
           cache: npm
           cache-dependency-path: frontend/package-lock.json
 
@@ -65,6 +68,9 @@ jobs:
         run: npm run build
 
 
+  # =========================
+  # DOCKER
+  # =========================
   docker:
     name: Docker Build
     runs-on: ubuntu-latest
